@@ -44,15 +44,15 @@ app.post('/books',(req,res)=>{
 
 app.put('/books/:id',(req,res)=>{
     const book = books.find(b=>b.id === parseInt(req.params.id));
-    if(!book) res.status(404).sent('Book not found');
+    if(!book) res.status(404).send('Book not found');
     book.title = req.body.title;
     book.author = req.body.author;
     res.send(book);
 });
 
-app.delete('/books',(req,res)=>{
+app.delete('/books/:id',(req,res)=>{
     const book = books.find(b=>b.id===parseInt(req.params.id));
-    if(!book) res.status(404).sent('Book not found');
+    if(!book) res.status(404).send('Book not found');
     const index = books.indexOf(book);
     books.splice(index,1);
     res.send(book);
